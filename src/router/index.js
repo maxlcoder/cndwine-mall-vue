@@ -1,27 +1,39 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Index from '@/components/Index';
-import OrderIndex from '@/components/order/Index';
-import GoodIndex from '@/components/goods/Index';
-import UserIndex from '@/components/user/Index';
-import CartIndex from '@/components/cart/Index';
-import AddressIndex from '@/components/user/Addresses';
-import AddressEdit from '@/components/user/AddressEdit';
-import AddressAdd from '@/components/user/AddressAdd';
+import Index from '@/view/Index';
+import OrderIndex from '@/view/order/Index';
+import OrderShow from '@/view/order/show/Index';
+import GoodIndex from '@/view/goods/Index';
+import UserIndex from '@/view/user/Index';
+import CartIndex from '@/view/cart/Index';
+import AddressIndex from '@/view/user/Addresses';
+import AddressEdit from '@/view/user/AddressEdit';
+import AddressAdd from '@/view/user/AddressAdd';
+import OrderPreview from '@/view/order/preview/Index';
 
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
+      path: '/order/preview',
+      name: 'OrderPreview',
+      component: OrderPreview,
+    },
+    {
       path: '/',
-      name: 'Index',
-      component: Index,
+      redirect: '/mall/index',
     },
     {
       path: '/orders',
       name: 'OrderIndex',
       component: OrderIndex,
+    },
+    {
+      path: '/orders/:id',
+      name: 'OrderShow',
+      component: OrderShow,
     },
     {
       path: '/goods/:id',
@@ -39,19 +51,33 @@ export default new Router({
       component: AddressIndex,
     },
     {
-      path: '/addresses/:id/edit',
-      name: 'AddressEdit',
-      component: AddressEdit,
-    },
-    {
       path: '/addresses/add',
       name: 'AddressAdd',
       component: AddressAdd,
     },
     {
+      path: '/addresses/:id/edit',
+      name: 'AddressEdit',
+      component: AddressEdit,
+    },
+    {
+      path: '/addresses/:action',
+      name: 'AddressChoose',
+      component: AddressIndex,
+    },
+    {
       path: '/cart',
       name: 'CartIndex',
       component: CartIndex,
+    },
+    {
+      path: '/mall/index',
+      name: 'Index',
+      component: Index,
+    },
+    {
+      path: '/mall/index/:id',
+      redirect: '/orders/:id',
     },
   ],
 });

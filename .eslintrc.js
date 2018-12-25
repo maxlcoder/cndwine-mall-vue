@@ -46,6 +46,9 @@ module.exports = {
     }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'prefer-template': 'off'
+    'prefer-template': 'off',
+    // 空格
+    "no-tabs":"off",
+    'semi': 0,
   }
 }
