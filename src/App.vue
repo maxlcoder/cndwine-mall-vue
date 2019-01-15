@@ -6,7 +6,7 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    <router-view/>
+    <router-view style="margin-bottom: 50px"/>
     <van-tabbar v-model="active" @change="onChangeTab">
       <van-tabbar-item icon="shop">精选</van-tabbar-item>
       <van-tabbar-item icon="cart">购物车</van-tabbar-item>
@@ -24,6 +24,11 @@ export default {
     [NavBar.name]: NavBar,
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem,
+  },
+  data() {
+    return {
+      active: 0,
+    }
   },
   methods: {
     onClickLeft() {

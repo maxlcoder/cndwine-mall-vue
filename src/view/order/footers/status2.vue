@@ -1,5 +1,6 @@
 <template>
   <div slot="footer" class="order_list--footer_btn">
+    <van-button size="small" @click="$emit('handle', 'refundOrder')">申请退款</van-button>
     <van-button
       size="small"
       type="danger"

@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      chosenAddressId: 1,
+      chosenAddressId: 0,
       list: [],
       addButtonText: '',
     };
@@ -32,11 +32,7 @@ export default {
     // eslint-disable-next-line
     this.addButtonText = this.$route.params.action === 'choose' ? '返回' : '',
     this.$ajax
-      .get('/api/addresses', {
-        headers: {
-          // Authorization: 'Bearer bGl1cmVubGluNzdAZ21haWwuY29tOmwxMjM0NTY==',
-        },
-      })
+      .get('/api/addresses')
       .then((response) => {
         // eslint-disable-next-line
         console.log(response.data.items);
@@ -48,7 +44,7 @@ export default {
           is_default: item.is_default,
         }));
         this.list.forEach((value) => {
-          if (value.is_default === 1) {
+          if (Number(value.is_default) === 1) {
             this.chosenAddressId = value.id;
           }
           return true;

@@ -61,35 +61,27 @@ export default {
       list: [],
       loading: false,
       finished: false,
-      active: 0,
     };
   },
 
   created() {
+    /* eslint-disable */
+    console.log(this.$store);
+    console.log(this.$store.getters.doneTodos);
     this.initList();
   },
   methods: {
     initList() {
-      // eslint-disable-next-line
-      console.log(this.$store.state.cart);
-      // eslint-disable-next-line
-      console.log('首页轮播初始化');
       // 请求商品列表
       this.$ajax
         .get('/api/products/swipe')
         .then((response) => {
-          // eslint-disable-next-line
-          console.log(response.data.items);
           this.swipes = this.assembleList(response.data.items);
         });
-      // eslint-disable-next-line
-      console.log('首页精选初始化');
       // 请求商品列表
       this.$ajax
         .get('/api/products/choiceness')
         .then((response) => {
-          // eslint-disable-next-line
-          console.log(response.data.items);
           this.list = this.assembleList(response.data.items);
         });
     },
@@ -103,13 +95,9 @@ export default {
       }));
     },
     onChange(index) {
-      // eslint-disable-next-line
-      console.log(index);
       this.current = index;
     },
     onClick(id) {
-      // eslint-disable-next-line
-      console.log(this.current + 'fff');
       this.$router.push({ path: `/goods/${id}` });
     },
     onLoad() {
@@ -132,7 +120,6 @@ export default {
     width: 100%;
     height: 240px;
     display: block;
-    padding: 10px 60px;
     box-sizing: border-box;
     background-color: white;
     pointer-events: none;

@@ -49,6 +49,7 @@ import status1 from './footers/status1';
 import status2 from './footers/status2';
 import status3 from './footers/status3';
 import status4 from './footers/status4';
+import status5 from './footers/status5';
 import status8 from './footers/status8';
 
 const STATUS_TEXT = {
@@ -73,6 +74,7 @@ export default {
     [status2.name]: status2,
     [status3.name]: status3,
     [status4.name]: status4,
+    [status5.name]: status5,
     [status8.name]: status8,
   },
 
@@ -141,8 +143,10 @@ export default {
       // 加载列表
       this.changeItem(index);
     },
-    toOrderShow(index) {
-      this.$router.push({name: 'OrderShow', params: { id: index }});
+    toOrderShow(i) {
+      /* eslint-disable */
+      console.log(i);
+      this.$router.push({name: 'OrderShow', params: { id: this.orders[i].id }});
     },
     toPay(i) {
       /* eslint-disable */
@@ -190,7 +194,32 @@ export default {
       }).catch((error) => {
         console.log(error);
         console.log('No');
-        this.$toast('取消失败');
+        this.$toast('您已取消');
+      });
+    },
+    refundOrder(i) {
+      this.$dialog.confirm({
+        title: '申请退款',
+        message: '是否确认申请退款？'
+      }).then(() => {
+        console.log('Yes');
+        // 取消订单
+        this.$ajax
+          .post('/api/orders/' + this.orders[i].id + '/refund')
+          .then((response) => {
+            if (response.data.code === 200) {
+              this.$toast('申请退款成功');
+              this.orders[i].state = 5;
+            } else if (response.data.code === 400) {
+              this.$toast(response.data.msg);
+            } else {
+              this.$toast('申请退款失败');
+            }
+          });
+      }).catch((error) => {
+        console.log(error);
+        console.log('No');
+        this.$toast('您已取消');
       });
     },
     receiptOrder(i) {
@@ -215,7 +244,7 @@ export default {
       }).catch((error) => {
         console.log(error);
         console.log('No');
-        this.$toast('收货失败');
+        this.$toast('您已取消');
       });
     },
     reminderOrder(i) {
