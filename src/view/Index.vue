@@ -7,7 +7,9 @@
       <van-swipe-item
         v-for="item in swipes"
         :key="item.id">
-        <img :src="item.cover" @click="onClick(item.id)"/>
+        <van-cell @click="onClick(item.id)">
+          <img :src="item.cover"/>
+        </van-cell>
       </van-swipe-item>
     </van-swipe>
     <van-list
@@ -61,13 +63,11 @@ export default {
       list: [],
       loading: false,
       finished: false,
+      active: 0,
     };
   },
 
   created() {
-    /* eslint-disable */
-    console.log(this.$store);
-    console.log(this.$store.getters.doneTodos);
     this.initList();
   },
   methods: {
