@@ -308,4 +308,7 @@ export default {
     }
   }
 }
+.van-goods-action {
+  bottom: 50px;
+}
 </style>
