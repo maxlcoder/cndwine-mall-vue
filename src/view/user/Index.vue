@@ -11,13 +11,13 @@
         <router-link to="/orders?state=1"><van-icon name="pending-payment" />待付款</router-link>
       </van-col>
       <van-col span="6">
-        <router-link to="/orders?state=2"><van-icon name="pending-orders" />待发货</router-link>
+        <router-link to="/orders?state=2"><van-icon name="logistics" />待发货</router-link>
       </van-col>
       <van-col span="6">
-        <router-link to="/orders?state=3"><van-icon name="pending-deliver" />待收货</router-link>
+        <router-link to="/orders?state=3"><van-icon name="goods-collect-o" />待收货</router-link>
       </van-col>
       <van-col span="6">
-        <router-link to="/orders?state=4"><van-icon name="logistics" />已完成</router-link>
+        <router-link to="/orders?state=4"><van-icon name="home-o" />已完成</router-link>
       </van-col>
     </van-row>
 

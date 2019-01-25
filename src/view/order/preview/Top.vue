@@ -22,7 +22,11 @@ export default {
   },
   data() {
     return {
-      address: {},
+      address: {
+        contact_name: '您还没有选择地址，请点击选择 ->',
+        contact_cellphone: '',
+        address: '',
+      },
     };
   },
   created() {
@@ -36,13 +40,15 @@ export default {
           // eslint-disable-next-line
           console.log(response);
           const address = response.data.item;
-          this.address = {
-            id: address.id,
-            contact_name: address.name,
-            contact_cellphone: address.cellphone,
-            address: address.province + address.city + address.county + ' ' + address.address,
-          };
-          this.$emit('pushAddress', this.address.id);
+          if (!Object.is(address, null)) {
+            this.address = {
+              id: address.id,
+              contact_name: address.name,
+              contact_cellphone: address.cellphone,
+              address: address.province + address.city + address.county + ' ' + address.address,
+            };
+            this.$emit('pushAddress', this.address.id);
+          }
         }).catch((error) => {
           // 由网络或者服务器抛出的错误
           Toast(error.toString());

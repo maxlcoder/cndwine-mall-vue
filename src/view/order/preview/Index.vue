@@ -63,7 +63,7 @@ export default {
           // eslint-disable-next-line
           console.log(response);
           if (response.data.code !== 200) {
-            Toast.fail('提交订单失败');
+            Toast.fail(response.data.msg);
           } else {
             Toast.success('提交订单成功');
             window.location.href = response.data.item.pay_url;

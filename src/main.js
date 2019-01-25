@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
   console.log(window);
   window.Laravel = { api_token: 'bGl1cmVubGluNzdAZ21haWwuY29tOmwxMjM0NTY==' };
 } else {
-  axios.defaults.baseURL = 'https://cndwine-mall.winhm.com';
+  axios.defaults.baseURL = 'https://mall.cndwine.com';
   axios.defaults.headers.common.Authorization = 'Bearer ' + window.Laravel.api_token;
 }
 

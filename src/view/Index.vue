@@ -27,7 +27,11 @@
           :desc="item.description"
           :title="item.title"
           :thumb="item.cover"
-        />
+        >
+          <div slot="footer">
+            <van-button round plain type="danger" size="small">马上秒</van-button>
+          </div>
+        </van-card>
       </van-cell>
     </van-list>
   </div>
@@ -43,6 +47,7 @@ import {
   Cell,
   Tabbar,
   TabbarItem,
+  Button,
 } from 'vant';
 
 export default {
@@ -56,6 +61,7 @@ export default {
     [Cell.name]: Cell,
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem,
+    [Button.name]: Button,
   },
   data() {
     return {
@@ -118,11 +124,21 @@ export default {
 .swipe {
   img {
     width: 100%;
-    height: 240px;
     display: block;
     box-sizing: border-box;
     background-color: white;
     pointer-events: none;
+  }
+  .van-cell {
+    padding: 0px;
+  }
+}
+.van-card {
+  &__footer {
+    z-index: 1;
+    float: right;
+    right: 10%;
+    margin-top: -40px;
   }
 }
 </style>

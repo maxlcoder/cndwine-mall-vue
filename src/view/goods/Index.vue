@@ -1,7 +1,7 @@
 <template>
   <div class="goods">
     <van-swipe class="goods-swipe" :autoplay="3000">
-      <van-swipe-item v-for="picture in goods.pictures" :key="picture">
+      <van-swipe-item v-for="picture in goods.swipes" :key="picture">
         <img :src="picture" >
       </van-swipe-item>
     </van-swipe>
@@ -110,22 +110,19 @@ export default {
   data() {
     return {
       activeNames: ['1'],
-      goods: {},
+      goods: {
+        express: 0,
+      },
       showBase: false,
       messageConfig: {},
       sku: {
         tree: [
           {
-            k: '种类',
+            k: '规格',
             v: [
               {
                 id: '30349',
                 name: '天蓝色',
-                imgUrl: 'https://img.yzcdn.cn/upload_files/2017/02/21/FjKTOxjVgnUuPmHJRdunvYky9OHP.jpg!100x100.jpg',
-              },
-              {
-                id: '30350',
-                name: '天蓝f色',
                 imgUrl: 'https://img.yzcdn.cn/upload_files/2017/02/21/FjKTOxjVgnUuPmHJRdunvYky9OHP.jpg!100x100.jpg',
               },
             ],
@@ -190,6 +187,7 @@ export default {
             price: response.data.item.price,
             stock: response.data.item.stock,
             pictures: response.data.item.pictures,
+            swipes: [response.data.item.cover],
           };
           this.sku.tree[0].v = response.data.item.skus.map(sku => ({
             id: `${sku.id}`,
