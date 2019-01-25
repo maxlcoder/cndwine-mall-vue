@@ -79,7 +79,7 @@ export default {
             Toast.fail('添加地址失败');
           } else {
             Toast.success('添加地址成功');
-            this.$router.push({ path: '/addresses' });
+            this.$router.go(-1);
           }
         }).catch((error) => {
           // 由网络或者服务器抛出的错误
@@ -96,7 +96,7 @@ export default {
             Toast.fail('删除地址失败');
           } else {
             Toast.success('删除地址成功');
-            this.$router.push({ path: '/addresses' });
+            this.$router.go(-1);
           }
         }).catch((error) => {
           // 由网络或者服务器抛出的错误

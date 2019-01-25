@@ -241,8 +241,6 @@ export default {
         num: data.selectedNum,
         price: data.selectedSkuComb.price * 0.01,
       };
-
-      Toast('立即购买');
       const submitGoods = [];
       submitGoods.push(params);
       // eslint-disable-next-line

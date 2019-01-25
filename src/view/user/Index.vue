@@ -2,7 +2,6 @@
   <div>
     <div class="user-poster">
       <div>
-        <img :src="user.avatar">
         <p>{{ user.name }}</p>
       </div>
     </div>
@@ -78,13 +77,12 @@ export default {
 <style lang="less">
 .user {
   &-poster {
+    text-align: center;
     height: 150px;
     width: 100%;
     display: block;
     background-image: url('https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png');
     div {
-      width: 20%;
-      margin-left: 40%;
       padding-top: 20px;
       text-align: center;
       img {
