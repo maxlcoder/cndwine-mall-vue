@@ -22,7 +22,7 @@
 
     <van-cell-group class="user-group">
       <router-link to="/orders?state=0">
-        <van-cell icon="records" title="全部订单"
+        <van-cell icon="balance-list" title="全部订单"
           is-link />
       </router-link>
       <router-link to="/addresses">
@@ -31,6 +31,14 @@
           title="收货地址"
           is-link />
       </router-link>
+      <van-cell
+          icon="service"
+          title="联系客服"
+          label="电话：0592-2625649" />
+      <van-cell
+          icon="shop"
+          title="门店自提"
+          label="地址：厦门市湖里区宜宾路4号建发酒业" />
     </van-cell-group>
   </div>
 </template>

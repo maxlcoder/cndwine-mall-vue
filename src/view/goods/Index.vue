@@ -109,7 +109,7 @@ export default {
 
   data() {
     return {
-      activeNames: ['1'],
+      activeNames: ['1', '2'],
       goods: {
         express: 0,
       },

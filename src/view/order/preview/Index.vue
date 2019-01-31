@@ -60,8 +60,6 @@ export default {
       this.$ajax
         .post('/api/orders', params)
         .then((response) => {
-          // eslint-disable-next-line
-          console.log(response);
           if (response.data.code !== 200) {
             Toast.fail(response.data.msg);
           } else {
