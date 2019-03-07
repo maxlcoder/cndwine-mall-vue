@@ -15,7 +15,7 @@
     <van-list
       v-model="loading"
       :finished="finished"
-      finished-text="没有更多了"
+      finished-text=""
       @load="onLoad"
     >
       <van-cell
@@ -34,6 +34,9 @@
         </van-card>
       </van-cell>
     </van-list>
+    <div>
+      <img style="width:100%" src="../assets/remark.jpeg">
+    </div>
   </div>
 </template>
 
