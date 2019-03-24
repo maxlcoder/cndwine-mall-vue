@@ -6,7 +6,7 @@
 			:title="item.title"
 			:desc="item.description"
 			:num="item.num"
-			:price="item.price"
+			:price="item.price.toFixed(2)"
 			:thumb="item.cover"
 		>
 		</van-card>
@@ -46,17 +46,12 @@ export default {
   },
   methods: {
     initGoods() {
-      // console.log(this.$route.query.goods);
       this.goods = JSON.parse(this.$route.query.goods);
-      // eslint-disable-next-line
-      console.log(this.goods);
     },
     calTotalPrice() {
       const price = this.goods.reduce((total, item) => total + (item.price * item.num), 0);
-      // eslint-disable-next-line
-      console.log(price);
       this.$emit('pushPrice', price);
-      this.totalPrice = price;
+      this.totalPrice = price.toFixed(2);
       return price;
     },
   },
