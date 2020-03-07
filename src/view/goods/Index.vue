@@ -40,18 +40,10 @@
     </van-collapse>
 
     <van-goods-action>
-      <van-goods-action-mini-btn icon="chat" @click="sorry">
-        客服
-      </van-goods-action-mini-btn>
-      <van-goods-action-mini-btn icon="cart" @click="toCart">
-        购物车
-      </van-goods-action-mini-btn>
-      <van-goods-action-big-btn @click="toAddCart">
-        加入购物车
-      </van-goods-action-big-btn>
-      <van-goods-action-big-btn primary @click="toBuy">
-        立即购买
-      </van-goods-action-big-btn>
+      <van-goods-action-icon icon="chat-o" text="客服" @click="sorry" />
+      <van-goods-action-icon icon="cart-o" text="购物车" @click="toCart" />
+      <van-goods-action-button type="warning" text="加入购物车" @click="toAddCart" />
+      <van-goods-action-button type="danger" text="立即购买" @click="toBuy" />
     </van-goods-action>
     <van-sku
       v-model="showBase"
@@ -66,6 +58,7 @@
       :close-on-click-overlay="false"
       :disable-stepper-input="false"
       :message-config="messageConfig"
+      :initial-sku="initialSku"
       @buy-clicked="onBuyClicked"
       @add-cart="onAddCartClicked"
     />
@@ -83,8 +76,8 @@ import {
   Toast,
   SwipeItem,
   GoodsAction,
-  GoodsActionBigBtn,
-  GoodsActionMiniBtn,
+  GoodsActionIcon,
+  GoodsActionButton,
   Collapse,
   CollapseItem,
   Sku,
@@ -100,8 +93,8 @@ export default {
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
     [GoodsAction.name]: GoodsAction,
-    [GoodsActionBigBtn.name]: GoodsActionBigBtn,
-    [GoodsActionMiniBtn.name]: GoodsActionMiniBtn,
+    [GoodsActionIcon.name]: GoodsActionIcon,
+    [GoodsActionButton.name]: GoodsActionButton,
     [Collapse.name]: Collapse,
     [CollapseItem.name]: CollapseItem,
     [Sku.name]: Sku,
@@ -115,6 +108,7 @@ export default {
       },
       showBase: false,
       messageConfig: {},
+      initialSku: {},
       sku: {
         tree: [
           {
@@ -201,6 +195,7 @@ export default {
             s1: `${sku.id}`, // 规格类目 k_s 为 s1 的对应规格值 id
             stock_num: sku.stock, // 当前 sku 组合对应的库存
           }));
+          this.initialSku = this.sku.list[0]
         });
     },
     toCart() {
