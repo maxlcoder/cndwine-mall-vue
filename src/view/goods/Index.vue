@@ -189,6 +189,7 @@ export default {
             pictures: response.data.item.pictures,
             swipes: [response.data.item.cover],
           };
+          this.sku.price = response.data.item.price;
           this.sku.tree[0].v = response.data.item.skus.map(sku => ({
             id: `${sku.id}`,
             name: sku.title,
