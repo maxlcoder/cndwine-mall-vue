@@ -1,15 +1,14 @@
 <template>
 	<div class="place_order_entity">
 		<top-address @pushAddress="onSetAddress" style="margin-bottom: 20px;"/>
-		<bottom-goods @pushPrice="onSetPrice" />
+		<bottom-goods @pushPrice="onSetPrice" @pushCoupon="onSetCoupon"/>
 		<van-submit-bar
-			:price="price"
-			label="总计："
+			:price="payPrice"
+			label="实付："
 			buttonText="提交订单"
 			:loading="isSubmit"
 			:disabled="isDisabled"
-			@submit="onSubmit"
-		/>
+			@submit="onSubmit"/>
 	</div>
 </template>
 
@@ -29,33 +28,40 @@ export default {
   },
   data() {
     return {
-      price: 0,
+      totalPrice: 0,
+      payPrice: 0,
       address_id: 0,
       isSubmit: false,
       isDisabled: false,
+      coupon_code: '',
     };
   },
-
+  created() {
+    // eslint-disable-next-line
+    console.log(this.$route.params);
+  },
   methods: {
     onSetPrice(data) {
       // eslint-disable-next-line
-      this.price = data * 100;
+      this.totalPrice = data.totalPrice * 100;
+      this.payPrice = data.payPrice * 100;
+    },
+    onSetCoupon(data) {
+      // eslint-disable-next-line
+      this.coupon_code = data;
     },
     onSetAddress(data) {
       this.address_id = data;
     },
     onSubmit() {
       this.isSubmit = true;
-      // eslint-disable-next-line
-      console.log(JSON.parse(this.$route.query.goods));
-      // eslint-disable-next-line
-      console.log(this.address_id);
       const queryGoods = JSON.parse(this.$route.query.goods);
-      // this.$router.replace({ name: 'payment' });
       const params = {
         address_id: this.address_id,
-        total_fee: this.price / 100,
+        total_fee: this.totalPrice / 100,
+        total_pay_fee: this.payPrice / 100,
         products: queryGoods,
+        coupon_code: this.coupon_code,
       };
       this.$ajax
         .post('/api/orders', params)

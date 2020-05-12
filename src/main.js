@@ -12,8 +12,6 @@ Vue.config.productionTip = false;
 if (process.env.NODE_ENV === 'development') {
   axios.defaults.baseURL = 'http://cndwine-mall.test';
   axios.defaults.headers.common.Authorization = 'Bearer xx';
-  // eslint-disable-next-line
-  console.log(window);
   window.Laravel = { api_token: 'xx' };
 } else {
   axios.defaults.baseURL = 'https://mall.cndwine.com';

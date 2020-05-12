@@ -25,6 +25,9 @@
             <span class="red">¥{{ totalPrice }}</span>
           </van-cell>
           <van-cell title="运费">¥{{ shipFee }}</van-cell>
+          <van-cell title="优惠金额">
+            <span class="red">¥{{ discount }}</span>
+          </van-cell>
         </van-cell-group>
       </div>
     </van-panel>
@@ -56,21 +59,17 @@ export default {
       totalPrice: 0,
       shipFee: 0,
       stateTip: '',
+      discount: 0,
     };
   },
 
   created() {
-    /* eslint-disable */
-    console.log(this.$router);
-    console.log(this.$route.params);
     if (this.$route.params.id) {
       this.order_id = this.$route.params.id;
       // 获取订单商品
       this.$ajax
         .get(`/api/orders/${this.order_id}`)
         .then((response) => {
-          // eslint-disable-next-line
-          console.log(response.data.item);
           const order = response.data.item;
           this.address = {
             contact_name: order.contact_name,
@@ -81,12 +80,9 @@ export default {
           this.totalPrice = order.total_fee;
           this.shipFee = order.ship_fee;
           this.stateTip = order.state_tip;
+          this.discount = order.discount;
         });
     }
-  },
-
-  methods: {
-  
   },
 };
 </script>

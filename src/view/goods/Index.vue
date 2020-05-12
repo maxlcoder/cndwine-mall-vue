@@ -163,15 +163,11 @@ export default {
 
   methods: {
     initGoods() {
-      // eslint-disable-next-line
-      console.log(this.$route.params);
       const goodsId = this.$route.params.id;
       // 加载商品
       this.$ajax
         .get(`/api/products/${goodsId}`)
         .then((response) => {
-          // eslint-disable-next-line
-          console.log(response.data.item);
           this.goods = {
             id: response.data.item.id,
             title: response.data.item.title,
@@ -208,8 +204,6 @@ export default {
       this.showBase = true;
     },
     onAddCartClicked(content) {
-      // eslint-disable-next-line
-      console.log(content);
       const params = {
         product_id: content.goodsId,
         sku_id: content.selectedSkuComb.id,
@@ -227,9 +221,7 @@ export default {
     },
 
     onBuyClicked(data) {
-      // eslint-disable-next-line
-      console.log(data);
-      const params = {
+      const item = {
         id: this.goods.id,
         sku_id: data.selectedSkuComb.id,
         title: this.goods.title,
@@ -238,12 +230,11 @@ export default {
         price: data.selectedSkuComb.price * 0.01,
       };
       const submitGoods = [];
-      submitGoods.push(params);
-      // eslint-disable-next-line
-      console.log(submitGoods);
+      submitGoods.push(item);
       this.$router.push(
         {
-          path: '/order/preview',
+          name: 'OrderPreview',
+          params: item,
           query: { goods: JSON.stringify(submitGoods) },
         });
     },

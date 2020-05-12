@@ -37,8 +37,6 @@ export default {
       this.$ajax
         .get('/api/addresses/default')
         .then((response) => {
-          // eslint-disable-next-line
-          console.log(response);
           const address = response.data.item;
           if (!Object.is(address, null)) {
             this.address = {

@@ -28,9 +28,10 @@
             :num="goods.num"
             :price="goods.price"
             :thumb="goods.cover"
-            @click.native="toOrderDetail(i)"/>
+            @click.native="toOrderShow(i)"/>
             <div class="order_list--total">
-              合计: {{ order.total_fee }}元（含运费{{ order.ship_fee }}元）
+              合计: {{ order.total_pay_fee }}元（含运费{{ order.ship_fee }}元）
+              <span v-if="order.discount > 0">优惠: {{ order.discount }}元</span>
             </div>
         </div>
         <component
@@ -125,6 +126,8 @@ export default {
         id: item.id,
         order_number: item.order_number,
         total_fee: item.total_fee,
+        total_pay_fee: item.total_pay_fee,
+        discount: item.discount,
         ship_fee: item.ship_fee,
         is_can_reminder: item.state === 2,
         state: item.state,
