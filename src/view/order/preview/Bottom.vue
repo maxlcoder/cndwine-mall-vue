@@ -74,8 +74,10 @@ export default {
         Toast.fail('请填写优惠码');
         return;
       }
+      const queryGoods = JSON.parse(this.$route.query.goods)
       const params = {
         coupon_code: this.coupon_code,
+        product_skus: queryGoods,
       };
       this.$ajax
         .post('/api/coupons/check', params)
